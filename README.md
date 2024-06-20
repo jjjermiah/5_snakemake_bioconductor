@@ -6,7 +6,7 @@ aka requires use of `--use-conda` flag
 {
   "conda_env_file_path": "workflow/envs/pipeline_env.yaml",
   "config_file_path": "workflow/config/config.yaml",
-  "git_url": "",
+  "git_url": "https://github.com/jjjermiah/5_snakemake_bioconductor.git",
   "output_files": [
     "results/output.txt"
   ],
