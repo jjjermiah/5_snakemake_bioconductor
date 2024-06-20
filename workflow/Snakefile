@@ -1,0 +1,26 @@
+from pathlib import Path
+from snakemake.remote.HTTP import RemoteProvider as HTTPRemoteProvider
+HTTP = HTTPRemoteProvider()
+
+configfile: "config/config.yaml"
+
+rule all:
+    input:
+        expand("results/summary{nu}.txt", nu=["1", "_2"])
+    output:
+        "results/output.txt"
+    shell:
+        "cat {input} > {output}"
+
+rule makesummary:
+    output:
+        "results/summary{nu}.txt",
+    threads:
+        2,
+    log:
+        "logs/makesummary{nu}.log",
+    conda:
+        "workflow/envs/pipeline_env.yaml",
+    shell:
+        "echo 'sleeping for 10 seconds' && sleep 10  > {output} | tee {log} 2>&1"
+
